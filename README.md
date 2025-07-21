@@ -1,105 +1,65 @@
-# 🎯 **TuneTray - a music playlist app**
+# 🎵 TuneTray - App de Listas de Reproducción
+
+TuneTray es una aplicación **full-stack** para gestionar canciones y listas de reproducción de manera sencilla y rápida.
 
 ---
 
-## 🟢 **1️⃣ Backend: Spring Boot (API & Data)**
+## 🚀 Tecnologías Utilizadas
 
-### ✅ Project Setup
+| Capa          | Tecnología                                           |
+| ------------- | ---------------------------------------------------- |
+| Backend       | Java 21, Spring Boot 3, Spring Data JPA, H2 Database |
+| Frontend      | Angular 17, TypeScript                               |
+| Base de Datos | H2 (en memoria, para demo)                           |
 
-- Create Spring Boot app (Spring Initializr)  
-  Dependencies: `Spring Web`, `Spring Data JPA`, `H2 Database`
+⚠️ **Importante:** Este es un proyecto para demostrar habilidades clave en **Spring Boot (Java)** y **Angular**, aplicando una arquitectura REST limpia y una interfaz sencilla.
 
-**⚠️ NOTE:** This app is delivered in demo mode. The H2 database runs **in-memory**, not from a file, so all data will be wiped when the application closes. To enable persistent data, update the H2 configuration to use a file-based database.
+- No incluye autenticación
 
-### ✅ Define Entities
+- La API no está preparada para producción
 
-- `Track`: `id`, `title`, `artist`, `album`
-
-- `Playlist`: `id`, `name`, `List<Track>`
-
-### ✅ Setup Repositories
-
-- `TrackRepository`: `findAll()`
-
-- `PlaylistRepository`: `findAll()`, `save()`, `deleteById()`
-
-### ✅ Create Basic API (Controllers)
-
-| Endpoint              | Method | Purpose         |
-| --------------------- | ------ | --------------- |
-| `/api/tracks`         | GET    | List tracks     |
-| `/api/playlists`      | GET    | List playlists  |
-| `/api/playlists`      | POST   | Create playlist |
-| `/api/playlists/{id}` | DELETE | Delete playlist |
-
-### ✅ Seed Sample Data (CommandLineRunner or data.sql)
-
-### ✅ Test with Postman / Swagger
-
-**✔️ Backend Complete (~5-6 hours)**
+- La base de datos H2 se despliega en memoria; no guarda datos al reiniciar
 
 ---
 
-## 🟡 **2️⃣ Frontend: Angular (UI & Integration)**
+## 📂 Estructura del Proyecto
 
-### ✅ Project Setup
-
-- `ng new music-playlist-app`
-
-- Install Angular Material or Tailwind CSS (optional)
-
-### ✅ App Structure
-
-| Component               | Purpose                         |
-| ----------------------- | ------------------------------- |
-| `TrackListComponent`    | Show available tracks           |
-| `PlaylistComponent`     | Create/manage a single playlist |
-| `PlaylistListComponent` | View all saved playlists        |
-
-### ✅ Services (HTTP)
-
-- `TrackService`: `getTracks()`
-
-- `PlaylistService`: `getPlaylists()`, `createPlaylist()`, `deletePlaylist()`
+```
+/backend   # API Spring Boot (Java)
+/frontend  # Cliente Angular (TypeScript)
+```
 
 ---
 
-### ✅ Implement Features
+## 🛠️ Cómo Ejecutar el Proyecto
 
-1. Fetch and display tracks from API
+### 📥 Backend (Spring Boot)
 
-2. Create playlists (select tracks, name, submit)
+1. Ir a la carpeta `/backend`
 
-3. View saved playlists
+2. Ejecutar:
+   
+   ```bash
+   ./mvnw spring-boot:run
+   ```
 
-4. Delete playlists
-
-5. Polish UI with Material/Tailwind (optional)
-
----
-
-## 🔵 **3️⃣ Finishing Touches**
-
-### ✅ Polish UX/UI
-
-- Loading indicators
-
-- Confirmation dialogs
-
-- Minimal animations/transitions (optional)
-
-### ✅ Basic Testing
-
-- Manual checks for CRUD flow
-
-- API error handling (404, etc.)
+3. API disponible en: `http://localhost:8080`
 
 ---
 
-# 🚩 **Final Deliverables**
+### 🎨 Frontend (Angular)
 
-- Clean repo: `/backend` (Spring Boot) + `/frontend` (Angular)
+1. Ir a la carpeta `/frontend`
 
-- README with instructions
+2. Ejecutar:
+   
+   ```bash
+   pnpm install
+   pnpm start
+   ```
+   
+   ⚠️ Este proyecto utiliza **pnpm** para la gestión de dependencias. Asegúrate de tenerlo instalado con `npm install -g pnpm`.
 
-- Screenshots (optional) for your portfolio
+3. Aplicación disponible en: `http://localhost:4200`
+
+---
