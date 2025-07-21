@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200") // Allow Angular app with CORS
 // REST Controller for managing Playlists
 @RestController
 @RequestMapping("/api/playlists")

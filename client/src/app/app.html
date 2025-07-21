@@ -1,0 +1,107 @@
+<header class="flex flex-col items-center justify-center gap-3 p-5 w-full
+         bg-gradient-to-tr from-indigo-900 via-blue-700 to-purple-900 text-white
+         shadow-lg">
+  <h1 class="text-4xl font-extrabold text-white drop-shadow-lg animate-fade-slide-up">
+    TuneTray
+  </h1>
+
+  <h2
+    class="bg-black/20 py-2 px-3 rounded-2xl text-center flex items-center gap-3 text-indigo-300 text-sm font-medium select-none">
+    Made with
+    <span class="inline-flex items-center gap-1">
+      <svg height="20" class="bg-green-400 rounded-full p-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.1 97">
+        <path fill="black"
+          d="M88.4,5.6a42.32,42.32,0,0,1-5.2,9.1A48.46,48.46,0,1,0,15.5,84l1.8,1.6A48.41,48.41,0,0,0,96.8,52C98.2,39.8,94.5,24.2,88.4,5.6ZM22.5,84.4a4.12,4.12,0,1,1-.6-5.8A4.21,4.21,0,0,1,22.5,84.4ZM88.1,69.9C76.2,85.8,50.6,80.4,34.3,81.2c0,0-2.9.2-5.8.6,0,0,1.1-.5,2.5-1,11.5-4,16.9-4.8,23.9-8.4C68,65.7,81.1,51,83.7,35.8c-5,14.6-20.2,27.2-34,32.3C40.2,71.6,23.1,75,23.1,75l-.7-.4c-11.6-5.7-12-30.9,9.2-39,9.3-3.6,18.1-1.6,28.2-4,10.7-2.5,23.1-10.5,28.1-21C93.5,27.5,100.3,53.7,88.1,69.9Z" />
+      </svg>
+      <span class="text-green-400 font-bold">Spring Boot</span>
+    </span>
+    and
+    <span class="inline-flex items-center gap-1">
+      <svg height="20" class="bg-red-400 rounded-full p-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path fill="black"
+          d="M185.7 268.1h76.2l-38.1-91.6-38.1 91.6zM223.8 32L16 106.4l31.8 275.7 176 97.9 176-97.9 31.8-275.7zM354 373.8h-48.6l-26.2-65.4H168.6l-26.2 65.4H93.7L223.8 81.5z" />
+      </svg>
+      <span class="text-red-400 font-bold">Angular</span>
+    </span>
+  </h2>
+
+  <nav class="flex gap-6 mt-4">
+    <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{ exact: true }" class="relative text-indigo-300 hover:text-white transition duration-300 font-semibold
+             drop-shadow-sm transform hover:scale-105">
+      My tracks
+      <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+    </a>
+
+    <a routerLink="/playlists" routerLinkActive="router-link-active" class="relative text-indigo-300 hover:text-white transition duration-300 font-semibold
+             drop-shadow-sm transform hover:scale-105">
+      My playlists
+      <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+    </a>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer class="fixed bottom-0 w-full bg-black/50 backdrop-blur-md text-white shadow-inner py-3 px-6 z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center text-xs text-indigo-200">
+    <span>
+      🎧 TuneTray <br> Your music, organized.
+    </span>
+    <span class="flex items-center gap-2">
+      <a href="https://github.com/r0dmd/tunetray" target="_blank"
+        class="hover:text-white transition font-bold">GitHub</a>
+      <span>|</span>
+      <span class="text-indigo-400">r0dmd © 2025</span>
+    </span>
+  </div>
+</footer>
+
+
+<style>
+  @keyframes fadeSlideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-slide-up {
+    animation: fadeSlideUp 0.6s ease forwards;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  /* Underline grow effect on hover for links */
+  nav a {
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav a span {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    background: white;
+    width: 0;
+    transition: width 0.3s ease;
+  }
+
+  nav a:hover span {
+    width: 100%;
+  }
+
+  /* Active router link style */
+  .router-link-active {
+    color: #f0f9ff !important;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255 255 255 / 0.7);
+  }
+</style>

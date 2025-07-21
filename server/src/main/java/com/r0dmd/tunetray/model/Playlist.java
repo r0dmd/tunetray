@@ -1,7 +1,12 @@
 package com.r0dmd.tunetray.model;
 
 import jakarta.persistence.*;
-import java.util.List;
+
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+import java.util.Set;
+import java.util.HashSet;
 
 // Playlist entity representing the playlist table in the DB
 @Entity
@@ -15,16 +20,16 @@ public class Playlist {
   private String name;
   private String description;
 
-  // A playlist contains a list of tracks
   @ManyToMany
-  private List<Track> tracks;
+  @JoinTable(name = "playlist_tracks", joinColumns = @JoinColumn(name = "playlist_id"), inverseJoinColumns = @JoinColumn(name = "track_id"))
+  private Set<Track> tracks = new HashSet<>();
 
   // Default constructor (required by JPA)
   public Playlist() {
   }
 
   // Constructor without ID (auto-generated)
-  public Playlist(String name, String description, List<Track> tracks) {
+  public Playlist(String name, String description, Set<Track> tracks) {
     this.name = name;
     this.description = description;
     this.tracks = tracks;
@@ -51,11 +56,11 @@ public class Playlist {
     this.description = description;
   }
 
-  public List<Track> getTracks() {
+  public Set<Track> getTracks() {
     return tracks;
   }
 
-  public void setTracks(List<Track> tracks) {
+  public void setTracks(Set<Track> tracks) {
     this.tracks = tracks;
   }
 }

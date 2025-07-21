@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-TunetrayApplication<tunetray>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.r0dmd.tunetray.TunetrayApplication",
+      "projectName": "tunetray",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

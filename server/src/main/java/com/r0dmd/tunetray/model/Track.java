@@ -1,9 +1,15 @@
 package com.r0dmd.tunetray.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 // Marks this class as a JPA entity, so Spring Data JPA knows to map it to a database table.
 @Entity
@@ -20,6 +26,10 @@ public class Track {
   private String title;
   private String artist;
   private String album;
+
+  @ManyToMany(mappedBy = "tracks")
+  @JsonIgnore  // Prevents infinite recursion when serializing to JSON
+  private Set<Playlist> playlists = new HashSet<>();
 
   // No-args constructor required by JPA
   public Track() {
@@ -63,6 +73,14 @@ public class Track {
 
   public void setAlbum(String album) {
     this.album = album;
+  }
+
+  public Set<Playlist> getPlaylists() {
+    return playlists;
+  }
+
+  public void setPlaylists(Set<Playlist> playlists) {
+    this.playlists = playlists;
   }
 
 }

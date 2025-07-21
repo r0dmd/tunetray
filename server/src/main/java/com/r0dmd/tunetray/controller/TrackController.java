@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.r0dmd.tunetray.exception.TrackNotFoundException;
+import com.r0dmd.tunetray.model.Playlist;
 import com.r0dmd.tunetray.model.Track;
 import com.r0dmd.tunetray.repository.TrackRepository;
 
+import jakarta.transaction.Transactional;
+
+@CrossOrigin(origins = "http://localhost:4200") // Allow Angular app with CORS
 // Marks this class as a REST controller for handling HTTP requests.
 @RestController
 @RequestMapping("/api/tracks") // Base URL path for this controller.
@@ -60,6 +65,7 @@ public class TrackController {
   }
 
   @DeleteMapping("/{id}")
+  @Transactional
   public ResponseEntity<Void> deleteTrack(@PathVariable Long id) {
     if (!trackRepository.existsById(id)) {
       // .notFound(): Returns 404 if not found.
@@ -71,9 +77,25 @@ public class TrackController {
       throw new TrackNotFoundException(id);
     }
 
-    trackRepository.deleteById(id);
-    // .noContent(): Returns 204 on success.
+    Track track = trackRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
+    for (Playlist playlist : track.getPlaylists()) {
+      playlist.getTracks().remove(track);
+    }
+
+    trackRepository.delete(track);
     return ResponseEntity.noContent().build();
   }
 
+  @Transactional
+  public void deleteTrackSafely(Long id) {
+    Track track = trackRepository.findById(id).orElseThrow(() -> new TrackNotFoundException(id));
+
+    // Remove track from playlists that reference it
+    for (Playlist playlist : track.getPlaylists()) {
+      playlist.getTracks().remove(track);
+    }
+
+    // Now delete the track safely
+    trackRepository.delete(track);
+  }
 }
