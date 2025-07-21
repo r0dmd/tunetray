@@ -35,7 +35,7 @@ TuneTray es una aplicación **full-stack** para gestionar canciones y listas de 
 
 ### 📥 Backend (Spring Boot)
 
-1. Ir a la carpeta `/backend`
+1. Ir en terminal a la carpeta `/backend`
 
 2. Ejecutar:
    
